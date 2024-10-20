@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pokémon Bank - Retiro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 class="text-center">Retiro</h3>
+                <form onsubmit="return hacerRetiro(event)">
+                    <div class="form-group">
+                        <label for="montoRetiro">Ingrese el monto a retirar</label>
+                        <input type="number" class="form-control" id="montoRetiro" placeholder="Ingrese la cantidad" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Confirmar Retiro</button>
+                </form>
+                <div id="mensaje" class="text-danger mt-3"></div> <!-- Mensaje de error -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para hacer el retiro
+        function hacerRetiro(event) {
+            event.preventDefault();
+            
+            var monto = parseFloat(document.getElementById('montoRetiro').value);
+            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
+            var saldo = 0;
+
+            // Calcular el saldo actual sumando los depósitos y restando los retiros
+            transacciones.forEach(function(transaccion) {
+                if (transaccion.tipo === 'Depósito') {
+                    saldo += transaccion.monto;
+                } else if (transaccion.tipo === 'Retiro') {
+                    saldo -= transaccion.monto;
+                }
+            });
+
+            // Validar que el monto a retirar no sea mayor que el saldo disponible
+            if (monto > saldo) {
+                document.getElementById('mensaje').textContent = 'Error: No puede retirar más que el saldo disponible. Saldo actual: $' + saldo.toFixed(2);
+            } else {
+                // Si el monto es válido, realizar el retiro
+                transacciones.push({ tipo: 'Retiro', monto: monto, fecha: new Date().toLocaleDateString() });
+                localStorage.setItem('transacciones', JSON.stringify(transacciones));
+
+                // Mostramos un mensaje de éxito
+                document.getElementById('mensaje').textContent = 'Retiro de $' + monto.toFixed(2) + ' realizado con éxito.';
+                document.getElementById('mensaje').classList.remove('text-danger');
+                document.getElementById('mensaje').classList.add('text-success');
+
+                // Redirigir a la página de acciones después de 2 segundos
+                setTimeout(function() {
+                    window.location.href = 'acciones.html';
+                }, 2000);
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
