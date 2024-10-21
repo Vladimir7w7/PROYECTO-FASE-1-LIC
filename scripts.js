@@ -75,6 +75,8 @@ function hacerRetiro(event) {
             saldo += transaccion.monto;
         } else if (transaccion.tipo === 'Retiro') {
             saldo -= transaccion.monto;
+        }else if (transaccion.tipo === 'Pago de Servicio') {
+            saldo -= transaccion.monto;
         }
     });
 
@@ -108,6 +110,8 @@ function mostrarSaldo() {
         if (transaccion.tipo === 'Depósito') {
             saldo += transaccion.monto;
         } else if (transaccion.tipo === 'Retiro') {
+            saldo -= transaccion.monto;
+        }else if (transaccion.tipo === 'Pago de Servicio') {
             saldo -= transaccion.monto;
         }
     });
@@ -177,3 +181,45 @@ function mostrarGraficoTransacciones() {
         }
     });
 }
+// Función para pagar servicios
+function pagarServicio(event) {
+    event.preventDefault();
+
+    var servicio = document.getElementById('servicio').value;
+    var monto = parseFloat(document.getElementById('montoServicio').value);
+    var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
+    var saldo = 0;
+
+
+    // Calcular el saldo actual sumando depósitos y restando retiros
+    transacciones.forEach(function(transaccion) {
+        if (transaccion.tipo === 'Depósito') {
+            saldo += transaccion.monto;
+        } else if (transaccion.tipo === 'Retiro') {
+            saldo -= transaccion.monto;
+        }else if (transaccion.tipo === 'Pago de Servicio') {
+            saldo -= transaccion.monto;
+        }
+    });
+
+    // Verificar si el usuario tiene suficiente saldo
+    if (monto > saldo) {
+        document.getElementById('mensaje').textContent = 'Error: No tienes suficiente saldo para pagar este servicio. Saldo actual: $' + saldo.toFixed(2);
+        document.getElementById('mensaje').classList.remove('text-success');
+        document.getElementById('mensaje').classList.add('text-danger');
+    } else {
+        // Añadir la transacción de pago de servicio
+        transacciones.push({ tipo: 'Pago de Servicio', monto: monto, fecha: new Date().toLocaleDateString() });
+        localStorage.setItem('transacciones', JSON.stringify(transacciones));
+
+        // Mostrar mensaje de éxito
+        document.getElementById('mensaje').textContent = 'Pago de ' + servicio + ' de $' + monto.toFixed(2) + ' realizado con éxito.';
+        document.getElementById('mensaje').classList.remove('text-danger');
+        document.getElementById('mensaje').classList.add('text-success');
+
+        // Redirigir a la página de acciones después de 2 segundos
+        setTimeout(function() {
+            window.location.href = 'acciones.html';
+        }, 2000);
+    }
+}//localStorage.clear();

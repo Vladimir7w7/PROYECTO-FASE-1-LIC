@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pokémon Bank - Pago de Servicios</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h3 class="text-center">Pago de Servicios</h3>
+        <form onsubmit="return pagarServicio(event)">
+            <div class="form-group">
+                <label for="servicio">Seleccione el servicio</label>
+                <select class="form-control" id="servicio" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Energía Eléctrica">Energía Eléctrica</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Telefonía">Telefonía</option>
+                    <option value="Agua Potable">Agua Potable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="montoServicio">Ingrese el monto a pagar</label>
+                <input type="number" class="form-control" id="montoServicio" placeholder="Ingrese la cantidad" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Confirmar Pago</button>
+        </form>
+        <div id="mensaje" class="text-success mt-3"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="acciones.html" class="btn btn-primary">Menú principal</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- External Script -->
+    <script src="scripts.js"></script>
+   
+
+</body>
+</html>
