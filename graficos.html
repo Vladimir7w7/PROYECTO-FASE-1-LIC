@@ -14,49 +14,19 @@
         <h3 class="text-center">Análisis de Transacciones</h3>
         <canvas id="transaccionesChart" class="mt-4"></canvas> <!-- Contenedor del gráfico -->
     </div>
+    <div class="text-center mt-4">
+        <a href="acciones.html" class="btn btn-primary">Menú principal</a>
+    </div>
+   <!-- Enlace al archivo externo de scripts -->
+   <script src="scripts.js"></script>
 
-    <script>
-        // Esperar hasta que el DOM esté cargado
-        document.addEventListener('DOMContentLoaded', function() {
-            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
-            var depositos = 0;
-            var retiros = 0;
-
-            // Contamos las transacciones
-            transacciones.forEach(function(transaccion) {
-                if (transaccion.tipo === 'Depósito') {
-                    depositos++;
-                } else if (transaccion.tipo === 'Retiro') {
-                    retiros++;
-                }
-            });
-
-            // Configurar el gráfico
-            var ctx = document.getElementById('transaccionesChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'bar', // Tipo de gráfico de barras
-                data: {
-                    labels: ['Depósitos', 'Retiros'], // Etiquetas en el eje X
-                    datasets: [{
-                        label: 'Cantidad de Transacciones',
-                        data: [depositos, retiros], // Datos a mostrar: número de depósitos y retiros
-                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true // Comenzar el eje Y desde 0
-                            }
-                        }]
-                    }
-                }
-            });
-        });
-    </script>
+   <script>
+       // Esperar hasta que el DOM esté cargado
+       document.addEventListener('DOMContentLoaded', function() {
+           // Función definida en scripts.js
+           mostrarGraficoTransacciones(); 
+       });
+   </script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

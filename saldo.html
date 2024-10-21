@@ -19,31 +19,18 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="acciones.html" class="btn btn-primary">Volver a Acciones</a>
+                    <a href="acciones.html" class="btn btn-primary">Menú principal</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript para calcular el saldo -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
-            var saldo = 0;
-
-            // Calculamos el saldo basado en las transacciones
-            transacciones.forEach(function(transaccion) {
-                if (transaccion.tipo === 'Depósito') {
-                    saldo += transaccion.monto;
-                } else if (transaccion.tipo === 'Retiro') {
-                    saldo -= transaccion.monto;
-                }
-            });
-
-            // Mostramos el saldo en el elemento con id "saldo"
-            document.getElementById('saldo').textContent = '$' + saldo.toFixed(2);
-        });
-    </script>
+ <!-- External JavaScript file -->
+ <script src="scripts.js"></script>
+ <script>
+     // Ejecutar la función mostrarSaldo desde scripts.js cuando cargue la página
+     document.addEventListener('DOMContentLoaded', mostrarSaldo);
+ </script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

@@ -22,28 +22,17 @@
                 <div id="mensaje" class="text-success mt-3"></div>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <a href="acciones.html" class="btn btn-primary">Menú principal</a>
+        </div>
     </div>
 
-    <!-- JavaScript para manejar el depósito -->
-    <script>
-        function hacerDeposito(event) {
-            event.preventDefault();
-            var monto = parseFloat(document.getElementById('montoDeposito').value);
-            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
-
-            // Agregamos el depósito a las transacciones
-            transacciones.push({ tipo: 'Depósito', monto: monto, fecha: new Date().toLocaleDateString() });
-            localStorage.setItem('transacciones', JSON.stringify(transacciones));
-
-            // Mostramos un mensaje de éxito
-            document.getElementById('mensaje').textContent = 'Depósito de $' + monto.toFixed(2) + ' realizado con éxito.';
-
-            // Redirigir a la página de acciones después de 2 segundos
-            setTimeout(function() {
-                window.location.href = 'acciones.html';
-            }, 2000);
-        }
-    </script>
+   <!-- External JavaScript file -->
+<script src="scripts.js"></script>
+<!-- JavaScript para manejar el depósito -->
+<script>
+   document.addEventListener('DOMContentLoaded', mostrarSaldo);
+</script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

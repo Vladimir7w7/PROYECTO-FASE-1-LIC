@@ -22,47 +22,14 @@
                 <div id="mensaje" class="text-danger mt-3"></div> <!-- Mensaje de error -->
             </div>
         </div>
+        <div class="text-center mt-4">
+            <a href="acciones.html" class="btn btn-primary">Menú principal</a>
+        </div>
     </div>
 
-    <script>
-        // Función para hacer el retiro
-        function hacerRetiro(event) {
-            event.preventDefault();
-            
-            var monto = parseFloat(document.getElementById('montoRetiro').value);
-            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
-            var saldo = 0;
-
-            // Calcular el saldo actual sumando los depósitos y restando los retiros
-            transacciones.forEach(function(transaccion) {
-                if (transaccion.tipo === 'Depósito') {
-                    saldo += transaccion.monto;
-                } else if (transaccion.tipo === 'Retiro') {
-                    saldo -= transaccion.monto;
-                }
-            });
-
-            // Validar que el monto a retirar no sea mayor que el saldo disponible
-            if (monto > saldo) {
-                document.getElementById('mensaje').textContent = 'Error: No puede retirar más que el saldo disponible. Saldo actual: $' + saldo.toFixed(2);
-            } else {
-                // Si el monto es válido, realizar el retiro
-                transacciones.push({ tipo: 'Retiro', monto: monto, fecha: new Date().toLocaleDateString() });
-                localStorage.setItem('transacciones', JSON.stringify(transacciones));
-
-                // Mostramos un mensaje de éxito
-                document.getElementById('mensaje').textContent = 'Retiro de $' + monto.toFixed(2) + ' realizado con éxito.';
-                document.getElementById('mensaje').classList.remove('text-danger');
-                document.getElementById('mensaje').classList.add('text-success');
-
-                // Redirigir a la página de acciones después de 2 segundos
-                setTimeout(function() {
-                    window.location.href = 'acciones.html';
-                }, 2000);
-            }
-        }
-    </script>
-
+   <!-- External JavaScript -->
+   <script src="scripts.js"></script>
+   
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

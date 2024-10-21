@@ -23,20 +23,19 @@
             </tbody>
         </table>
     </div>
+    <div class="text-center mt-4">
+        <a href="acciones.html" class="btn btn-primary">Menú principal</a>
+    </div>
+
+    <!-- Enlace al archivo de scripts -->
+    <script src="scripts.js">
+        
+    </script>
 
     <script>
+        // Llamar a la función para cargar el historial de transacciones desde scripts.js
         document.addEventListener('DOMContentLoaded', function() {
-            var transacciones = JSON.parse(localStorage.getItem('transacciones')) || [];
-            var historial = document.getElementById('historial-transacciones');
-
-            transacciones.forEach(function(transaccion) {
-                var row = `<tr>
-                    <td>${transaccion.fecha}</td>
-                    <td>${transaccion.tipo}</td>
-                    <td>$${transaccion.monto.toFixed(2)}</td>
-                </tr>`;
-                historial.innerHTML += row;
-            });
+            mostrarHistorialTransacciones(); 
         });
     </script>
 
