@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,34 +9,109 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Encabezado con barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo Pokémon Bank" style="width: 40px; height: 40px; margin-right: 10px;">
+            Pokémon Bank
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <!-- Contenido principal -->
     <div class="container mt-5">
-        <h3 class="text-center" id="bienvenida">Bienvenido</h3>
-        <p class="text-center">Número de Cuenta: <span id="userID">[ID]</span></p>
+        <div class="text-center">
+            <img src="logo.png" alt="Logo Pokémon Bank" style="width: 150px; height: auto; margin-bottom: 20px;">
+            <h3 class="text-primary"id="bienvenida">Bienvenido</h3>
+            <p class="text-secondary">Número de Cuenta: <span id="userID" class="font-weight-bold">[ID]</span></p>
+        </div>
 
         <div class="row justify-content-center mt-4">
-            <div class="col-md-6">
-                <div class="list-group">
-                    <a href="deposito.html" class="list-group-item list-group-item-action">Depósito</a>
-                    <a href="retiro.html" class="list-group-item list-group-item-action">Retiro</a>
-                    <a href="saldo.html" class="list-group-item list-group-item-action">Consulta de Saldo</a>
-                    <a href="pago_servicios.html" class="list-group-item list-group-item-action">Pago de Servicios</a>
-                    <a href="historial.html" class="list-group-item list-group-item-action">Historial de Transacciones</a>
-                    <a href="graficos.html" class="list-group-item list-group-item-action">Gráfico de Transacciones</a>
-                    <a href="login.html" class="list-group-item list-group-item-action text-danger">Cerrar Sesión</a>
+            <!-- Tarjetas con acciones -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Depósito</h5>
+                        <p class="card-text">Realiza depósitos a tu cuenta de manera rápida y segura.</p>
+                        <a href="deposito.html" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-success">Retiro</h5>
+                        <p class="card-text">Retira fondos disponibles de tu cuenta fácilmente.</p>
+                        <a href="retiro.html" class="btn btn-success btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-info">Pago de servicios</h5>
+                        <p class="card-text">Puede realizar pagos de servicio de energia eléctrica, agua etc.</p>
+                        <a href="pago_servicios.html" class="btn btn-info btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Consulta de Saldo</h5>
+                        <p class="card-text">Verifica el saldo actual de tu cuenta en tiempo real.</p>
+                        <a href="saldo.html" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Agregar más tarjetas para las demás acciones -->
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-success">Historial de transaccaciones</h5>
+                        <p class="card-text">Verifica el historial de tu cuenta en tiempo real.</p>
+                        <a href="historial.html" class="btn btn-success btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-info">Gráfico</h5>
+                        <p class="card-text">Verifica el flujo de dinero de tu cuenta en tiempo real.</p>
+                        <a href="graficos.html" class="btn btn-info btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2024 Pokémon Bank. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS y dependencias -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
-    <!-- External Script -->
+    <!-- Script personalizado -->
     <script src="scripts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', mostrarUsuario);
     </script>
+
 </body>
 </html>

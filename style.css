@@ -1,0 +1,11 @@
+<style>
+    .navbar-brand img {
+        border-radius: 50%; /* Hace el logo circular */
+        border: 2px solid white; /* Añade un borde alrededor */
+    }
+
+    .main-logo {
+        max-width: 100%; /* Escala automáticamente en pantallas pequeñas */
+        height: auto; /* Mantiene la proporción */
+    }
+</style>
